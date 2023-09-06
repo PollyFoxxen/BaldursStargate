@@ -16,10 +16,14 @@
 
         private void Battle(Player player, Monster monster)
         {
+            Console.WriteLine("Player opens a chest, and out jumps a... " + monster.Type);
+
+            int counter = 1;
             while (true)
             {
-                int att = 0;
-                Console.WriteLine("Player opens a chest, and out jumps a... " + monster.Type);
+                Console.WriteLine("Round " + counter++);
+                Console.ReadKey();
+                int att = 0; 
                 if (WhoStarts() == 0)
                 {
                     att = Attack(monster);
@@ -27,7 +31,8 @@
                 }
                 else
                 {
-                    //MonsterAttack(); 
+                    att = Attack(player);
+                    att = Attack(monster);
                 }
             }
         }
@@ -67,6 +72,7 @@
             pcp.MaxHealth = 100;
             pcp.Health = pcp.MaxHealth;
             pcp.Armor = 2;
+            pcp.Type = "Player";
             return pcp;
         }
 
