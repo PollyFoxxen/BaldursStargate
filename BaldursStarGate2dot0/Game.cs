@@ -5,7 +5,10 @@
         public static int Dice = 20;
         //TODO Cleanup (refactoring)
         //TODO Choose weapons
-        //Save in files
+        //TODO Save in files
+        //TODO Register player
+        //TODO Exceptions
+
         public static Random Rnd = new Random();
 
         public Game()
@@ -23,6 +26,8 @@
             pcp.Health = pcp.MaxHealth;
             pcp.Armor = 2;
             pcp.Type = "Player";
+            Console.Write("What is your name: ");
+            pcp.Name = Console.ReadLine();
             return pcp;
         }
 

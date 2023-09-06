@@ -1,12 +1,16 @@
 ﻿namespace BaldursStarGate2dot0
 {
     internal class Monster : Creature
-    {
-        
+    { 
         public Monster()
         {
             CreateMonster();
             Health = MaxHealth;
+        }
+
+        public override string? ToString()
+        {
+            return Type;
         }
 
         private void CreateMonster()

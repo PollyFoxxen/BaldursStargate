@@ -9,7 +9,7 @@
 
         private void Combat(Player player, Monster monster)
         {
-            Console.WriteLine("Player opens a chest, and out jumps a... " + monster.Type);
+            Console.WriteLine($"{player} opens a chest, and out jumps a {monster}.");
             bool continueBattle = true;
             int counter = 1;
             while (continueBattle)
@@ -33,17 +33,17 @@
 
         private bool Attack(Creature attacker, Creature defender)
         {
-            int att = AttackRoll();
-            Console.WriteLine(attacker.Type + " swings, and rolls a " + att);
-            att = ArmorReduction(att, defender);
-            Console.WriteLine(defender.Type + "'s armor reduces attack to " + att);
-            defender.ReduceHealth(att);
-            Console.WriteLine($"{defender.Type} have {defender.Health} health left.");
+            int roll = AttackRoll();
+            Console.WriteLine($"{attacker} swings, and rolls a " + roll);
+            roll = ArmorReduction(roll, defender);
+            Console.WriteLine(defender + "'s armor reduces attack to " + roll);
+            defender.ReduceHealth(roll);
+            Console.WriteLine($"{defender} have {defender.Health} health left.");
 
             //We check if someone died, and if, we return false, so we can stop the battle
             if (defender.Health <= 0)
             {
-                Console.WriteLine(defender.Type + " have died");
+                Console.WriteLine(defender + " have died");
                 return false;
             }
 
