@@ -2,6 +2,7 @@
 {
     internal class Game
     {
+        int dice = 20;
         //TODO Cleanup (refactoring)
         //TODO Choose weapons
         private Random rnd = new Random();
@@ -17,36 +18,44 @@
         private void Battle(Player player, Monster monster)
         {
             Console.WriteLine("Player opens a chest, and out jumps a... " + monster.Type);
-
+            bool continueBattle = true;
             int counter = 1;
-            while (true)
+            while (continueBattle)
             {
                 Console.WriteLine("Round " + counter++);
                 Console.ReadKey();
-                int att = 0; 
                 if (WhoStarts() == 0)
                 {
-                    att = Attack(monster);
-                    att = Attack(player);
+                    continueBattle = Attack(player, monster);
+                    if (!continueBattle) break;
+                    continueBattle = Attack(monster, player);
                 }
                 else
                 {
-                    att = Attack(player);
-                    att = Attack(monster);
+                    continueBattle = Attack(monster, player);
+                    if (!continueBattle) break;
+                    continueBattle = Attack(player, monster);
                 }
             }
         }
 
-        private int Attack(Creature creature)
+        private bool Attack(Creature attacker, Creature defender)
         {
             int att = AttackRoll();
-            Console.WriteLine("Player swings, and rolls a " + att);
-            att = ArmorReduction(att, creature);
-            Console.WriteLine(creature.Type + "'s armor reduces attack to " + att);
-            creature.ReduceHealth(att);
-            Console.WriteLine($"{creature.Type} have {creature.Health} health left.");
-            if (creature.Health <= 0) Console.WriteLine(creature.Type + " have died");
-            return att;
+            Console.WriteLine(attacker.Type + " swings, and rolls a " + att);
+            att = ArmorReduction(att, defender);
+            Console.WriteLine(defender.Type + "'s armor reduces attack to " + att);
+            defender.ReduceHealth(att);
+            Console.WriteLine($"{defender.Type} have {defender.Health} health left.");
+
+            //We check if someone died, and if, we return false, so we can stop the battle
+            if (defender.Health <= 0) 
+            { 
+                Console.WriteLine(defender.Type + " have died");
+                return false;
+            }
+            
+            return true;
         }
 
         private int ArmorReduction(int att, Creature creature)
@@ -54,10 +63,10 @@
             return Math.Max(0, att - creature.Armor);
         }
 
-        //TODO Add modifier dependent on weapon or creature 
+        //TODO Add modifier dependent on weapon or defender 
         private int AttackRoll()
         {
-            int att = rnd.Next(10);
+            int att = rnd.Next(dice);
             return att;
         }
 
