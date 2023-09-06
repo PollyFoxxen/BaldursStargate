@@ -22,7 +22,8 @@
             { 
                 att = PlayerAttack();
                 att = ArmorReduction(att, monster);
-
+                monster.ReduceHealth(att);
+                if (monster.Health <= 0) Console.WriteLine(monster.Type+ " have died");
             }
             else 
             { 
@@ -32,7 +33,7 @@
 
         private int ArmorReduction(int att, Monster monster)
         {
-            return att - monster.Armor;
+            return Math.Max(0, att - monster.Armor);
         }
 
         private int PlayerAttack()
