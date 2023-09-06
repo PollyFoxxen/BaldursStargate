@@ -4,6 +4,8 @@
     {
         //TODO Cleanup (refactoring)
         //TODO Choose weapons
+        private Random rnd = new Random();
+
         public Game()
         {
             Console.WriteLine("We have started our game constructor by instantiating an object");
@@ -12,9 +14,36 @@
             Battle(pg, mg);
         }
 
-        private void Battle(Player pg, Monster mg)
+        private void Battle(Player player, Monster monster)
         {
-            Console.WriteLine("Player opens a chest, and out jumps a... " + mg.Type);
+            int att = 0;
+            Console.WriteLine("Player opens a chest, and out jumps a... " + monster.Type);
+            if (WhoStarts() == 0) 
+            { 
+                att = PlayerAttack();
+                att = ArmorReduction(att, monster);
+
+            }
+            else 
+            { 
+                //MonsterAttack(); 
+            }
+        }
+
+        private int ArmorReduction(int att, Monster monster)
+        {
+            return att - monster.Armor;
+        }
+
+        private int PlayerAttack()
+        {
+            int att = rnd.Next(10);
+            return att;
+        }
+
+        private int WhoStarts()
+        {
+            return rnd.Next(2);
         }
 
         private Player CreatePlayer()
