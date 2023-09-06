@@ -16,27 +16,41 @@
 
         private void Battle(Player player, Monster monster)
         {
-            int att = 0;
-            Console.WriteLine("Player opens a chest, and out jumps a... " + monster.Type);
-            if (WhoStarts() == 0) 
-            { 
-                att = PlayerAttack();
-                att = ArmorReduction(att, monster);
-                monster.ReduceHealth(att);
-                if (monster.Health <= 0) Console.WriteLine(monster.Type+ " have died");
-            }
-            else 
-            { 
-                //MonsterAttack(); 
+            while (true)
+            {
+                int att = 0;
+                Console.WriteLine("Player opens a chest, and out jumps a... " + monster.Type);
+                if (WhoStarts() == 0)
+                {
+                    att = Attack(monster);
+                    att = Attack(player);
+                }
+                else
+                {
+                    //MonsterAttack(); 
+                }
             }
         }
 
-        private int ArmorReduction(int att, Monster monster)
+        private int Attack(Creature creature)
         {
-            return Math.Max(0, att - monster.Armor);
+            int att = AttackRoll();
+            Console.WriteLine("Player swings, and rolls a " + att);
+            att = ArmorReduction(att, creature);
+            Console.WriteLine(creature.Type + "'s armor reduces attack to " + att);
+            creature.ReduceHealth(att);
+            Console.WriteLine($"{creature.Type} have {creature.Health} health left.");
+            if (creature.Health <= 0) Console.WriteLine(creature.Type + " have died");
+            return att;
         }
 
-        private int PlayerAttack()
+        private int ArmorReduction(int att, Creature creature)
+        {
+            return Math.Max(0, att - creature.Armor);
+        }
+
+        //TODO Add modifier dependent on weapon or creature 
+        private int AttackRoll()
         {
             int att = rnd.Next(10);
             return att;

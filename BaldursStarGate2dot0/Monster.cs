@@ -2,7 +2,7 @@
 {
     internal class Monster : Creature
     {
-        public string Type { get; set; }
+        
         public Monster()
         {
             CreateMonster();
