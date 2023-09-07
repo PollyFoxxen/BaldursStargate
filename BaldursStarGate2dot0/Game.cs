@@ -16,7 +16,7 @@
 
         public Game()
         {
-            Console.WriteLine("We have started our game constructor by instantiating an object");
+            Console.WriteLine("Welcome to BSG 2.0");
             Player pg = CreatePlayer();
             GameMenu(pg);
         }
@@ -26,7 +26,8 @@
             bool isExit = false;
             while (!isExit)
             {
-                Console.WriteLine("*** Menu ***");
+                Console.Clear();
+                Console.WriteLine("*** Game Menu ***");
                 Console.WriteLine("[1] Open Stargate");
                 Console.WriteLine("[2] Go shopping");
                 Console.WriteLine("[3] Rest & Relax");
@@ -56,7 +57,6 @@
                 }
             }
         }
-
 
         private Player CreatePlayer()
         {

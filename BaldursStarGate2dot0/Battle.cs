@@ -9,6 +9,7 @@
 
         private void Combat(Player player, Monster monster)
         {
+            Console.Clear();
             Console.WriteLine($"{player} opens a stargate, and out jumps a {monster}.");
             bool continueBattle = true;
             int counter = 1;
