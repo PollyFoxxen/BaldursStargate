@@ -5,8 +5,8 @@
         static void Main(string[] args)
         {
             Console.CursorVisible = false;
-            Console.SetWindowSize(20, 20);
-            Console.SetBufferSize(20, 20);
+            //Console.SetWindowSize(20, 20);
+            //Console.SetBufferSize(20, 20);
             Console.Clear();
             new Menu();
         }

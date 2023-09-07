@@ -18,13 +18,14 @@
         {
             Console.WriteLine("Welcome to BSG 2.0");
             Player pg = CreatePlayer();
+            Console.Clear();
             Gui.ShowPlayer(pg);
             while (GameMenu(pg));
         }
 
         bool GameMenu(Player player)
         {
-            Console.Clear();
+           
             Console.WriteLine("*** Game Menu ***");
             Console.WriteLine("[1] Open Stargate");
             Console.WriteLine("[2] Go shopping");
