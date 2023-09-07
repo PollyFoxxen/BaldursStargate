@@ -7,44 +7,63 @@
             Combat(player, monster);
         }
 
-        private void Combat(Player player, Monster monster)
+        public Battle() { }
+
+        public bool Combat(Player player, Monster monster)
         {
             Console.Clear();
-            Console.WriteLine($"{player} opens a stargate, and out jumps a {monster}.");
+            Gui.ShowPlayer(player);
+            Gui.ShowMonster(monster);
+            Gui.Print(3,5,$"{player} opens a stargate, and out jumps a {monster}.");
             bool continueBattle = true;
-            int counter = 1;
+            int round = 1;
             while (continueBattle)
             {
-                Console.WriteLine("Round " + counter++);
+                if (lineCounter > 20)
+                {
+                    Console.Clear();
+                    Gui.ShowPlayer(player);
+                    Gui.ShowMonster(monster);
+                    lineCounter = 6;
+                }
+
+                Gui.Print(3,4,"Round " + round++);
                 Console.ReadKey();
                 if (WhoStarts() == 0)
                 {
                     continueBattle = Attack(player, monster);
-                    if (!continueBattle) break;
+                    if (!continueBattle) return true;// break;
                     continueBattle = Attack(monster, player);
+                    if (!continueBattle) return false;// break;
                 }
                 else
                 {
                     continueBattle = Attack(monster, player);
-                    if (!continueBattle) break;
+                    if (!continueBattle) return false;// break;
                     continueBattle = Attack(player, monster);
+                    if (!continueBattle) return true;
                 }
+
+
             }
+            return true;
         }
 
+        int lineCounter = 6;
         private bool Attack(Creature attacker, Creature defender)
         {
             int roll = AttackRoll();
-            Console.WriteLine($"{attacker} swings, and rolls a " + roll);
+            Gui.Print(3, lineCounter++, $"{attacker} swings, and rolls a " + roll);
             roll = ArmorReduction(roll, defender);
-            Console.WriteLine(defender + "'s armor reduces attack to " + roll);
+ //           Console.WriteLine(defender + "'s armor reduces attack to " + roll);
             defender.ReduceHealth(roll);
-            Console.WriteLine($"{defender} have {defender.Health} health left.");
+ //           Console.WriteLine($"{defender} have {defender.Health} health left.");
 
             //We check if someone died, and if, we return false, so we can stop the battle
             if (defender.Health <= 0)
             {
-                Console.WriteLine(defender + " have died");
+                Gui.Print(3, lineCounter, $"{defender} have died.");
+                Console.ReadKey();
                 return false;
             }
             return true;

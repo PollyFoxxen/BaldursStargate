@@ -16,28 +16,29 @@
 
         public Game()
         {
-            Console.WriteLine("Welcome to BSG 2.0");
             Player pg = CreatePlayer();
-            Console.Clear();
-            Gui.ShowPlayer(pg);
             while (GameMenu(pg));
         }
 
         bool GameMenu(Player player)
         {
-           
-            Console.WriteLine("*** Game Menu ***");
-            Console.WriteLine("[1] Open Stargate");
-            Console.WriteLine("[2] Go shopping");
-            Console.WriteLine("[3] Rest & Relax");
-            Console.WriteLine("[4] Return to main menu");
+            Console.Clear();
+            Gui.ShowPlayer(player);
+            Gui.Print(10, 8, "*** Game Menu ***");
+            Gui.Print(10, 9, "[1] Open Stargate");
+            Gui.Print(10, 10, "[2] Go shopping");
+            Gui.Print(10, 11, "[3] Rest & Relax");
+            Gui.Print(10, 12, "[4] Return to main menu");
 
             switch (Console.ReadKey(true).Key)
             {
                 case ConsoleKey.NumPad1:
                 case ConsoleKey.D1:
                     Monster monster = CreateMonster();
-                    new Battle(player, monster);
+                    //new Battle(player, monster);
+                    bool result = new Battle().Combat(player, monster);
+                    if (result) Gui.Print(20, 10, "Player won");
+                    else Gui.Print(20, 10, "Monster won");
                     break;
                 case ConsoleKey.NumPad2:
                 case ConsoleKey.D2:
@@ -65,7 +66,7 @@
             pcp.Health = pcp.MaxHealth;
             pcp.Armor = 2;
             pcp.Type = "Player";
-            Console.Write("What is your name: ");
+            Gui.Print(3,5,"Name: ");
             pcp.Name = Console.ReadLine();
             return pcp;
         }

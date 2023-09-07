@@ -17,17 +17,20 @@
                 //then value is capped at max. THEN health is set.
                 if (value > MaxHealth) value = MaxHealth;
                 health = value;
+                if (this.GetType() == typeof(Player))
+                    Gui.ShowPlayer((Player)this);
+                else Gui.ShowMonster((Monster)this);
             }
         }
         
         public int MaxHealth { get; set; }
         public int Armor { get; set; }
         public string Type { get; set; } = "Unknown";
+        public int Gold { get; set; }
 
         public void ReduceHealth(int damage)
         {
             Health -= damage;
         }
-
     }
 }

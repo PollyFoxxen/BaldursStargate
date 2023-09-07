@@ -10,10 +10,10 @@
         private void StartMenu()
         {
             Console.Clear();
-            Console.WriteLine("*** Menu ***");
-            Console.WriteLine("[1] New Game");
-            Console.WriteLine("[2] Load Game");
-            Console.WriteLine("[3] Exit Game");
+            Gui.Print(10, 8, "*** Menu ***");
+            Gui.Print(10, 9, "[1] New Game");
+            Gui.Print(10, 10, "[2] Load Game");
+            Gui.Print(10, 11, "[3] Exit Game");
 
             switch (Console.ReadKey(true).Key)
             {
