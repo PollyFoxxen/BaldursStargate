@@ -15,7 +15,7 @@
 
         private void CreateMonster()
         {
-            switch (new Random().Next(100))
+            switch (Game.Rnd.Next(100))
             {
                 case < 20:
                     Type = "Orc";

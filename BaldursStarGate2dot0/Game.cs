@@ -2,13 +2,13 @@
 {
     internal class Game
     {
-        public static int Dice = 20;
         //TODO Cleanup (refactoring)
         //TODO Choose weapons
         //TODO Save in files
         //TODO Register player
         //TODO Exceptions
 
+        public static int Dice = 20;
         public static Random Rnd = new Random();
 
         public Game()
@@ -16,6 +16,7 @@
             Console.WriteLine("We have started our game constructor by instantiating an object");
             Player pg = CreatePlayer();
             Monster mg = CreateMonster();
+            
             new Battle(pg, mg);
         }
 

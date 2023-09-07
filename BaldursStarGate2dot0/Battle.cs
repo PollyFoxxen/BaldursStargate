@@ -9,7 +9,7 @@
 
         private void Combat(Player player, Monster monster)
         {
-            Console.WriteLine($"{player} opens a chest, and out jumps a {monster}.");
+            Console.WriteLine($"{player} opens a stargate, and out jumps a {monster}.");
             bool continueBattle = true;
             int counter = 1;
             while (continueBattle)
@@ -46,7 +46,6 @@
                 Console.WriteLine(defender + " have died");
                 return false;
             }
-
             return true;
         }
 
