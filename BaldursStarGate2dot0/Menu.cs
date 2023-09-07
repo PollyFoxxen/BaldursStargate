@@ -23,6 +23,7 @@
                     break;
                 case ConsoleKey.NumPad2:
                 case ConsoleKey.D2:
+                    //TODO Load game
                     break;
                 case ConsoleKey.NumPad3:
                 case ConsoleKey.D3:

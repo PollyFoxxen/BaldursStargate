@@ -18,44 +18,41 @@
         {
             Console.WriteLine("Welcome to BSG 2.0");
             Player pg = CreatePlayer();
-            GameMenu(pg);
+            while (GameMenu(pg));
         }
 
-        void GameMenu(Player player)
+        bool GameMenu(Player player)
         {
-            bool isExit = false;
-            while (!isExit)
-            {
-                Console.Clear();
-                Console.WriteLine("*** Game Menu ***");
-                Console.WriteLine("[1] Open Stargate");
-                Console.WriteLine("[2] Go shopping");
-                Console.WriteLine("[3] Rest & Relax");
-                Console.WriteLine("[4] Return to main menu");
+            Console.Clear();
+            Console.WriteLine("*** Game Menu ***");
+            Console.WriteLine("[1] Open Stargate");
+            Console.WriteLine("[2] Go shopping");
+            Console.WriteLine("[3] Rest & Relax");
+            Console.WriteLine("[4] Return to main menu");
 
-                switch (Console.ReadKey(true).Key)
-                {
-                    case ConsoleKey.NumPad1:
-                    case ConsoleKey.D1:
-                        Monster monster = CreateMonster();
-                        new Battle(player, monster);
-                        break;
-                    case ConsoleKey.NumPad2:
-                    case ConsoleKey.D2:
-                        //TODO Create a shop
-                        break;
-                    case ConsoleKey.NumPad3:
-                    case ConsoleKey.D3:
-                        //TODO Property GET SET
-                        player.Health += 10;
-                        break;
-                    case ConsoleKey.D4:
-                        isExit = true;
-                        break;
-                    default:
-                        break;
-                }
+            switch (Console.ReadKey(true).Key)
+            {
+                case ConsoleKey.NumPad1:
+                case ConsoleKey.D1:
+                    Monster monster = CreateMonster();
+                    new Battle(player, monster);
+                    break;
+                case ConsoleKey.NumPad2:
+                case ConsoleKey.D2:
+                    //TODO Create a shop
+                    break;
+                case ConsoleKey.NumPad3:
+                case ConsoleKey.D3:
+                    //TODO Property GET SET
+                    player.Health += 10;
+                    break;
+                case ConsoleKey.D4:
+                    return false;
+                default:
+                    break;
+                    
             }
+            return true;
         }
 
         private Player CreatePlayer()
