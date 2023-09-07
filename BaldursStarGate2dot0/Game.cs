@@ -18,6 +18,7 @@
         {
             Console.WriteLine("Welcome to BSG 2.0");
             Player pg = CreatePlayer();
+            Gui.ShowPlayer(pg);
             while (GameMenu(pg));
         }
 
@@ -45,12 +46,13 @@
                 case ConsoleKey.D3:
                     //TODO Property GET SET
                     player.Health += 10;
+      
                     break;
+                case ConsoleKey.NumPad4:
                 case ConsoleKey.D4:
                     return false;
                 default:
-                    break;
-                    
+                    break;          
             }
             return true;
         }
