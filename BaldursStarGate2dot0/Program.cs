@@ -4,8 +4,8 @@
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello, World!");
-            new Game();
+            Console.CursorVisible = false;
+            new Menu();
         }
     }
 }
