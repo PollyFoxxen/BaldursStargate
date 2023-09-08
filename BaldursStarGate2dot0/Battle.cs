@@ -43,8 +43,6 @@
                     continueBattle = Attack(player, monster);
                     if (!continueBattle) return true;
                 }
-
-
             }
             return true;
         }
@@ -55,9 +53,7 @@
             int roll = AttackRoll();
             Gui.Print(3, lineCounter++, $"{attacker} swings, and rolls a " + roll);
             roll = ArmorReduction(roll, defender);
- //           Console.WriteLine(defender + "'s armor reduces attack to " + roll);
             defender.ReduceHealth(roll);
- //           Console.WriteLine($"{defender} have {defender.Health} health left.");
 
             //We check if someone died, and if, we return false, so we can stop the battle
             if (defender.Health <= 0)
