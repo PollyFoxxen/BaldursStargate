@@ -1,9 +1,12 @@
-﻿namespace BaldursStarGate2dot0
+﻿using System.Text.Json.Serialization;
+
+namespace BaldursStarGate2dot0
 {
     internal abstract class Creature
     {
         //Field
         private int health;
+        public int MaxHealth { get; set; }
 
         //Property. GET returns value of field, SET sets value of field from [value]
         public int Health { 
@@ -23,7 +26,6 @@
             }
         }
         
-        public int MaxHealth { get; set; }
         public int Armor { get; set; }
         public string Type { get; set; } = "Unknown";
         public int Gold { get; set; }

@@ -20,6 +20,11 @@
             while (GameMenu(pg));
         }
 
+        public Game(Player player)
+        {
+            while (GameMenu(player)) ;
+        }
+
         bool GameMenu(Player player)
         {
             Console.Clear();
@@ -29,6 +34,7 @@
             Gui.Print(10, 10, "[2] Go shopping");
             Gui.Print(10, 11, "[3] Rest & Relax");
             Gui.Print(10, 12, "[4] Return to main menu");
+            Gui.Print(10, 13, "[5] Save game");
 
             switch (Console.ReadKey(true).Key)
             {
@@ -46,18 +52,22 @@
                     break;
                 case ConsoleKey.NumPad3:
                 case ConsoleKey.D3:
-                    //TODO Property GET SET
                     player.Health += 10;
-      
                     break;
                 case ConsoleKey.NumPad4:
                 case ConsoleKey.D4:
                     return false;
+                case ConsoleKey.NumPad5:
+                case ConsoleKey.D5:
+                    Io.SaveGame(player);
+                    break;
                 default:
                     break;          
             }
             return true;
         }
+
+
 
         private Player CreatePlayer()
         {

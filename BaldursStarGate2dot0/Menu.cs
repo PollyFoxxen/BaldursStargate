@@ -23,7 +23,8 @@
                     break;
                 case ConsoleKey.NumPad2:
                 case ConsoleKey.D2:
-                    //TODO Load game
+                    Player player = Io.LoadFromFile();
+                    new Game(player);
                     break;
                 case ConsoleKey.NumPad3:
                 case ConsoleKey.D3:
