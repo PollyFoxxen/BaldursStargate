@@ -4,7 +4,7 @@ using System.Xml.Serialization;
 
 namespace BaldursStarGate2dot0
 {
-    internal class Io //io 
+    internal class Io 
     {
         static string path = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
 
