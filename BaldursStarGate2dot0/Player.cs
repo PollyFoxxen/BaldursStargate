@@ -1,6 +1,6 @@
 ﻿namespace BaldursStarGate2dot0
 {
-    internal class Player : Creature
+    public class Player : Creature
     {
         public string? Name { get; set; }
         public int Mana { get; set; }

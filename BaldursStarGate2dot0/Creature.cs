@@ -2,7 +2,7 @@
 
 namespace BaldursStarGate2dot0
 {
-    internal abstract class Creature
+    public abstract class Creature
     {
         //Field
         private int health;

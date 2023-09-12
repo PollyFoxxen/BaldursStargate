@@ -11,13 +11,13 @@
         //TODO Register player
         //TODO Exceptions
 
-        public static int Dice = 20;
+        public const int Dice = 20;
         public static Random Rnd = new Random();
 
         public Game()
         {
             Player pg = CreatePlayer();
-            while (GameMenu(pg));
+            while (GameMenu(pg)) ;
         }
 
         public Game(Player player)
@@ -62,12 +62,10 @@
                     Io.SaveGame(player);
                     break;
                 default:
-                    break;          
+                    break;
             }
             return true;
         }
-
-
 
         private Player CreatePlayer()
         {
@@ -76,7 +74,7 @@
             pcp.Health = pcp.MaxHealth;
             pcp.Armor = 2;
             pcp.Type = "Player";
-            Gui.Print(3,5,"Name: ");
+            Gui.Print(3, 5, "Name: ");
             pcp.Name = Console.ReadLine();
             return pcp;
         }
